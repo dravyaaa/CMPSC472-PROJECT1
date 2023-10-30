@@ -141,31 +141,30 @@ This is not implemented in the current version. However, it’s always efficient
 -   This function is a signal handler to handle termination signals, such as Ctrl+C.
 -   It logs a message and exits the application gracefully.
 
-
-    ![Screenshot (485)](https://github.com/dravyaaa/CMPSC472-PROJECT1/assets/107662465/f016f88d-eb0e-4e02-a71a-26d364e0a797)
-![Screenshot (486)](https://github.com/dravyaaa/CMPSC472-PROJECT1/assets/107662465/5edb7447-6d8c-4715-ad91-30d5c5f5b84a)
-![Screenshot (487)](https://github.com/dravyaaa/CMPSC472-PROJECT1/assets/107662465/4beeddb2-9315-4886-b86e-19f442b3ba12)
+  ![Screenshot (485)](https://github.com/dravyaaa/CMPSC472-PROJECT1/assets/107662465/dc7f8984-dd02-462f-ba6b-363aa175c6b9)
+![Screenshot (486)](https://github.com/dravyaaa/CMPSC472-PROJECT1/assets/107662465/543c5df3-6e92-45d3-9664-93b938046704)
+![Screenshot (487)](https://github.com/dravyaaa/CMPSC472-PROJECT1/assets/107662465/c935994c-01ef-4d41-8c26-3a54bbb6a6f4)
 
 
     **Discussion**
 
-    Process Creation and Management:
+    **Process Creation and Management:**
 
     The project implemented a process creation mechanism using system calls like fork and exec. This allows users to create new processes efficiently, expanding the system's capabilities. The ability to list, terminate, and monitor running processes enhances the project's management functionalities. Users can obtain essential information about each process, such as its unique Process ID (PID), parent process ID, and current state.
 
-    Thread Support and Synchronization:
+    **Thread Support and Synchronization:**
 
     One of the project's notable achievements is its support for multiple threads within a process. It includes thread creation, termination, and synchronization mechanisms using system calls like pthread_create and synchronization primitives such as mutexes and semaphores. These features enable concurrent execution within processes and mitigate synchronization issues like data races.
 
-    Inter-Process Communication (IPC):
+    **Inter-Process Communication (IPC):**
 
     The project tackled Inter-Process Communication (IPC) efficiently. It introduced various IPC mechanisms, including message passing, shared memory, and pipes, using relevant system calls like pipe, msgget, and shmget. This allows processes and threads to communicate and share data effectively, promoting collaboration and data exchange.
 
-    Command-Line and Graphic User Interface (GUI):
+    **Command-Line and Graphic User Interface (GUI):**
 
     The project addressed user accessibility by providing a user-friendly interface. Users can interact with the Process Manager through Graphic User Interface (GUI). The project's flexibility offers commands for process and thread management, synchronization, and IPC operations, alongside clear and informative command syntax, and options.
 
-    Skills Gained:
+    **Skills Gained:**
 
     Working on this project acquired a multitude of skills. It helped become proficient in process and thread manipulation, enabling to exploit system calls for process and thread control effectively. Additionally, it helped develop the skill of creating a software system that operates reliably, reducing resource conflicts. This skill ensures that the system runs efficiently and without disruptions.
 
