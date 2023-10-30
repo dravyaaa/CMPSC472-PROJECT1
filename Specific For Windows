@@ -1,0 +1,51 @@
+INSTRUCTIONS: 
+
+The preexec_fn parameter in subprocess.Popen is not supported on Windows platforms. If you are developing on Windows, you can use an alternative method to run a process 
+with reduced privileges. One common approach on Windows is to use the runas command to run a process as a different user. In this modified code, we use the runas command 
+on Windows to run the process with reduced privileges. Make sure to replace windows_user with the appropriate user name on your system. This method allows you to run a 
+process as a different user on Windows. On non-Windows platforms, the original method is used. 
+
+Here's how you can modify the create_process function to run a process with reduced privileges on Windows:
+
+
+
+# ... (Previous code)
+
+# Function to create a new process with improved security and priority management
+def create_process():
+    program_name = program_name_entry.get()
+    args = args_entry.get().split()
+    priority = int(priority_entry.get())
+
+    try:
+        # Validate user inputs
+        if not is_safe_program_name(program_name) or not all(is_safe_argument(arg) for arg in args):
+            logging.error("Invalid program name or argument.")
+            append_log("Invalid program name or argument.")
+            return
+
+        # Run the process with reduced privileges on Windows
+        if os.name == 'nt':
+            command = f'runas /user:{windows_user} "{program_name} {" ".join(args)}"'
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        else:
+            # On non-Windows platforms, use the original method
+            process = subprocess.Popen([program_name] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        # Store information about the process using its PID as the key
+        processes[process.pid] = {
+            'process': process,
+            'threads': [],
+            'state': 'running',
+            'output_pipe': process.stdout,
+            'start_time': time.time(),
+            'priority': priority  # Store process priority
+        }
+
+        logging.info(f"Process {process.pid} created with priority {priority}.")
+        append_log(f"Process {process.pid} created with priority {priority}.")
+    except Exception as e:
+        logging.error(f"Error creating process: {e}")
+        append_log(f"Error creating process: {e}")
+
+# ... (Other functions)
