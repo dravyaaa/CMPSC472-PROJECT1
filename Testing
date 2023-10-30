@@ -1,0 +1,51 @@
+def run_tests():
+    test_process_creation()
+    test_process_termination()
+    test_thread_creation()
+    test_ipc_functionality()
+    test_invalid_inputs()
+
+def test_process_creation():
+    # Test creating a valid process
+    create_process("notepad", [], 1)
+    # Expected result: Process is created successfully.
+    
+    # Test creating a process with an invalid program name
+    create_process("my_program with spaces", [], 2)
+    # Expected result: Error message indicating an invalid program name.
+
+    # Test creating a process with an invalid argument
+    create_process("python", ["my_arg with spaces"], 3)
+    # Expected result: Error message indicating an invalid argument.
+
+def test_process_termination():
+    # Test terminating an existing process
+    create_process("notepad", [], 1)
+    terminate_process(list(processes.keys())[0])
+    # Expected result: Process is terminated successfully.
+
+    # Test terminating a non-existing process
+    terminate_process(9999)
+    # Expected result: Error message indicating that the process does not exist.
+
+def test_thread_creation():
+    # Test creating a thread in an existing process
+    create_process("notepad", [], 1)
+    create_thread(list(processes.keys())[0])
+    # Expected result: Thread is created successfully in the existing process.
+
+    # Test creating a thread in a non-existing process
+    create_thread(9999)
+    # Expected result: Error message indicating that the process does not exist.
+
+
+def test_invalid_inputs():
+    # Test invalid input handling
+    create_process("invalid_program", [], 1)
+    # Expected result: Error message indicating an invalid program name.
+
+    create_process("python", ["invalid_arg with spaces"], 2)
+    # Expected result: Error message indicating an invalid argument.
+
+if __name__ == "__main__":
+    run_tests()
